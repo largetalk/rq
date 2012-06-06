@@ -9,8 +9,9 @@ def add_standard_arguments(parser):
             help='The Redis portnumber (default: 6379)')
     parser.add_argument('--db', '-d', type=int, default=0,
             help='The Redis database (default: 0)')
-
+    parser.add_argument('--passwd', '-pwd', default=None,
+            help='The Redis password (default: None)')
 
 def setup_redis(args):
-    redis_conn = redis.Redis(host=args.host, port=args.port, db=args.db)
+    redis_conn = redis.Redis(host=args.host, port=args.port, db=args.db, password=args.passwd)
     use_connection(redis_conn)
